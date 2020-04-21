@@ -7,8 +7,8 @@ for (let i = 0; i < items.length; i++) {
         image_url: items[i].ImageURL,
         price:items[i].Price,
         url: items[i].URL,
-        contributor:items[0].Contributor,
-        publisher:items[0].Publisher
+        contributor:items[i].Contributor,
+        publisher:items[i].Publisher
     })
     }}
 
