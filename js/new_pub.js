@@ -22,6 +22,7 @@ function getJSON(json_data) {
 	};
 	req.open("GET",json_data, false);
 	req.send(null);
+	templeterender(items)
 }
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(){
 var items
 json_data= "20200423j.json"
 getJSON(json_data)
-    templeterender(items)
+
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 
   });
