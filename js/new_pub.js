@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
 
 var items
-json_data= "json/20200424j.json"
+json_data= "json/20200425j.json"
 getJSON(json_data)
 
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
