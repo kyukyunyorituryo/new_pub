@@ -25,8 +25,32 @@ function getJSON(json_data) {
 	templeterender(items)
 }
 
+//コミックをクリックすると、コミックだけが表示される。
+function comicfn(){
+var comic = document.getElementById('comic');
+comic.addEventListener('click', function() {
+nav=[]
+comics = items.filter(word => word.Booktype =='コミック');
+$('#frame').children().remove();
+templeterender(comics)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//単行本をクリックすると、単行本だけが表示される。
+function paperbackfn(){
+var paperback = document.getElementById('paperback');
+paperback .addEventListener('click', function() {
+nav=[]
+paperbacks = items.filter(word => word.Booktype =='単行本');
+$('#frame').children().remove();
+templeterender(paperbacks)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
 document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
+comicfn()
+paperbackfn()
 
 var items
 json_data= "json/20200425j.json"
@@ -34,4 +58,6 @@ getJSON(json_data)
 
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 
+
   });
+
