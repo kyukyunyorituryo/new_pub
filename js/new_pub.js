@@ -37,13 +37,13 @@ for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
 //単行本をクリックすると、単行本だけが表示される。
-function paperbackfn(){
-var paperback = document.getElementById('paperback');
-paperback .addEventListener('click', function() {
+function abookfn(){
+var abook = document.getElementById('abook');
+abook .addEventListener('click', function() {
 nav=[]
-paperbacks = items.filter(word => word.Booktype =='単行本');
+abooks = items.filter(word => word.Booktype =='単行本');
 $('#frame').children().remove();
-templeterender(paperbacks)
+templeterender(abooks)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
@@ -83,7 +83,28 @@ templeterender(pocketeditions)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
-
+//ペーパーバック
+function paperbackfn(){
+var paperback = document.getElementById('paperback');
+paperback.addEventListener('click', function() {
+nav=[]
+paperbacks = items.filter(word => word.Booktype =='ペーパーバック');
+$('#frame').children().remove();
+templeterender(paperbacks)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//ムック
+function mookfn(){
+var mook = document.getElementById('mook');
+mook.addEventListener('click', function() {
+nav=[]
+mooks = items.filter(word => word.Booktype =='ムック');
+$('#frame').children().remove();
+templeterender(mooks)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
 
 //日付を選択して切り替える
 function selectdays(day){
@@ -110,10 +131,13 @@ function getNextYMD(now){
 document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
 comicfn()
-paperbackfn()
+abookfn()
 softcoverfn()
 largebookfn()
 pocketeditionfn()
+paperbackfn()
+mookfn()
+
 var items
 var now   = new Date();
 
