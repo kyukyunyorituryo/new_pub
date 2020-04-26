@@ -62,6 +62,14 @@ for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 //}, false);
 }
 
+function getNextYMD(now){
+    now.setDate(now.getDate() + 1);
+    var y = now.getFullYear();
+    var m = ("00" + (now.getMonth()+1)).slice(-2);
+    var d = ("00" + now.getDate()).slice(-2);
+    var result = y + m + d;
+    return result;
+  }
 
 document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
@@ -71,14 +79,7 @@ paperbackfn()
 var items
 var now   = new Date();
 
-function getNextYMD(now){
-    now.setDate(now.getDate() + 1);
-    var y = now.getFullYear();
-    var m = ("00" + (now.getMonth()+1)).slice(-2);
-    var d = ("00" + now.getDate()).slice(-2);
-    var result = y + m + d;
-    return result;
-  }
+
 nextday =getNextYMD(now);
 
 json_data= "json/"+nextday+"j.json"
