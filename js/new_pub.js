@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
 comicfn()
 paperbackfn()
-
+softcoverfn()
 var items
 var now   = new Date();
 
