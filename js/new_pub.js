@@ -47,6 +47,7 @@ templeterender(paperbacks)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
+//ソフトカバー
 function softcoverfn(){
 var softcover = document.getElementById('softcover');
 softcover.addEventListener('click', function() {
@@ -57,6 +58,32 @@ templeterender(softcovers)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
+
+
+//大型本
+function largebookfn(){
+var largebook = document.getElementById('largebook');
+largebook.addEventListener('click', function() {
+nav=[]
+largebooks = items.filter(word => word.Booktype =='大型本');
+$('#frame').children().remove();
+templeterender(largebooks)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+
+//文庫
+function pocketedition(){
+var pocketedition = document.getElementById('pocketedition');
+pocketedition.addEventListener('click', function() {
+nav=[]
+pocketeditions = items.filter(word => word.Booktype =='文庫');
+$('#frame').children().remove();
+templeterender(pocketeditions)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+
 
 //日付を選択して切り替える
 function selectdays(day){
@@ -85,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function(){
 comicfn()
 paperbackfn()
 softcoverfn()
+largebookfn()
+pocketeditionfn()
 var items
 var now   = new Date();
 
