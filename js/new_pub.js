@@ -69,7 +69,19 @@ comicfn()
 paperbackfn()
 
 var items
-json_data= "json/20200427j.json"
+var now   = new Date();
+
+function getNextYMD(now){
+    now.setDate(now.getDate() + 1);
+    var y = now.getFullYear();
+    var m = ("00" + (now.getMonth()+1)).slice(-2);
+    var d = ("00" + now.getDate()).slice(-2);
+    var result = y + m + d;
+    return result;
+  }
+nextday =getNextYMD(now);
+
+json_data= "json/"+nextday+"j.json"
 getJSON(json_data)
 
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
