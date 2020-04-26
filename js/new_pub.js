@@ -47,6 +47,22 @@ templeterender(paperbacks)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
+
+
+//日付を選択して切り替える
+function selectdays(day){
+//var days = document.getElementById('days');
+//days.addEventListener('click', function() {
+nav=[]
+var items
+json_data= "json/"+day+"j.json"
+getJSON(json_data)
+$('#frame').children().remove();
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+//}, false);
+}
+
+
 document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
 comicfn()
@@ -58,6 +74,4 @@ getJSON(json_data)
 
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 
-
   });
-
