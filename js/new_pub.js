@@ -47,7 +47,16 @@ templeterender(paperbacks)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
-
+function softcoverfn(){
+var softcover = document.getElementById('softcover');
+softcover.addEventListener('click', function() {
+nav=[]
+softcovers = items.filter(word => word.Booktype =='単行本（ソフトカバー）');
+$('#frame').children().remove();
+templeterender(softcovers)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
 
 //日付を選択して切り替える
 function selectdays(day){
