@@ -73,7 +73,7 @@ for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }
 
 //文庫
-function pocketedition(){
+function pocketeditionfn(){
 var pocketedition = document.getElementById('pocketedition');
 pocketedition.addEventListener('click', function() {
 nav=[]
