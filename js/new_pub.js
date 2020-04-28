@@ -1,4 +1,4 @@
-templete='            <li class="media mb-3 alert-warning ">\n            <a href="<%= url %>">\n                <img src="<%= image_url %>" width="158" height="250" class="mr-3"></a>\n                <div class="media-body">\n                    <h5><%= title %></h5>\n                    <p>価格：<%= price %>円</p>\n                    <p><%= contributor %></p>\n                    <p><%= publisher %></p>\n\n                </div>\n            </li>'
+templete='            <li class="media mb-3 alert-warning ">\n            <a href="<%= url %>" target="_blank">\n                <img src="<%= image_url %>" width="158" height="250" class="mr-3"></a>\n                <div class="media-body">\n                    <h5><%= title %></h5>\n                    <p>価格：<%= price %>円</p>\n                    <p><%= contributor %></p>\n                    <p><%= publisher %></p>\n                    <a href="<%= url %>" target="_blank"><button type="button" class="btn btn-warning">Amazonで購入</button> </a>\n                </div>\n            </li>'
 nav=[];
 function templeterender(items){
 for (let i = 0; i < items.length; i++) {
@@ -107,16 +107,17 @@ for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }
 
 //日付を選択して切り替える
-function selectdays(day){
-//var days = document.getElementById('days');
-//days.addEventListener('click', function() {
+function selectdays(){
+var days = document.getElementById('datetimepicker1');
+days.addEventListener('change', function() {
 nav=[]
+day=days.value
 var items
 json_data= "json/"+day+"j.json"
 getJSON(json_data)
 $('#frame').children().remove();
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
-//}, false);
+}, false);
 }
 
 function getNextYMD(now){
@@ -140,8 +141,6 @@ mookfn()
 
 var items
 var now   = new Date();
-
-
 nextday =getNextYMD(now);
 
 json_data= "json/"+nextday+"j.json"
