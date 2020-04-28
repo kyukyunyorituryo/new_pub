@@ -137,7 +137,7 @@ pocketeditionfn()
 paperbackfn()
 mookfn()
 var days = document.getElementById('datetimepicker1');
-days.addEventListener('change', function() {
+days.addEventListener('input', function() {
 
 selectdays(days.value)
 }, false);
