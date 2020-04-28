@@ -107,17 +107,15 @@ for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }
 
 //日付を選択して切り替える
-function selectdays(){
-var days = document.getElementById('datetimepicker1');
-days.addEventListener('change', function() {
+function selectdays(day){
+
 nav=[]
-day=days.value
 var items
 json_data= "json/"+day+"j.json"
 getJSON(json_data)
 $('#frame').children().remove();
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
-}, false);
+
 }
 
 function getNextYMD(now){
@@ -138,6 +136,11 @@ largebookfn()
 pocketeditionfn()
 paperbackfn()
 mookfn()
+var days = document.getElementById('datetimepicker1');
+days.addEventListener('change', function() {
+
+selectdays(days.value)
+}, false);
 
 var items
 var now   = new Date();
