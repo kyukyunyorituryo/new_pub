@@ -141,7 +141,10 @@ days.addEventListener('input', function() {
 
 selectdays(days.value)
 }, false);
+$('#datetimepicker1').on("dp.change", function(e){
 
+selectdays($(this).val())
+});
 var items
 var now   = new Date();
 nextday =getNextYMD(now);
