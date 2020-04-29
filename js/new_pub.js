@@ -111,7 +111,7 @@ function selectdays(day){
 
 nav=[]
 var items
-json_data= "json/"+day+"j.json"
+json_data= "https://kyukyunyorituryo.github.io/new_pub/json/"+day+"j.json"
 getJSON(json_data)
 $('#frame').children().remove();
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
@@ -136,11 +136,7 @@ largebookfn()
 pocketeditionfn()
 paperbackfn()
 mookfn()
-var days = document.getElementById('datetimepicker1');
-days.addEventListener('input', function() {
 
-selectdays(days.value)
-}, false);
 $('#datetimepicker1').on("dp.change", function(e){
 
 selectdays($(this).val())
@@ -149,7 +145,7 @@ var items
 var now   = new Date();
 nextday =getNextYMD(now);
 
-json_data= "json/"+nextday+"j.json"
+json_data= "https://kyukyunyorituryo.github.io/new_pub/json/"+nextday+"j.json"
 getJSON(json_data)
 
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
