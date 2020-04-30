@@ -1,4 +1,5 @@
-templete='            <li class="media mb-3 alert-warning ">\n            <a href="<%= url %>" target="_blank">\n                <img src="<%= image_url %>" height="250" class="mr-3"></a>\n                <div class="media-body">\n                    <h5><%= title %></h5>\n                    <p>価格：<%= price %>円</p>\n                    <p><%= contributor %></p>\n                    <p><%= publisher %></p>\n                    <a href="<%= url %>" target="_blank"><button type="button" class="btn btn-warning">Amazonで購入</button> </a>\n                </div>\n            </li>'
+templete='            <li class="media mb-3 alert-warning ">\n  <div class="img-container--table-cell">\n    <img src="<%= image_url %>" class="mr-3"/>\n  </div>\n                <div class="media-body ml-3">\n                    <h5><%= title %></h5>\n                    <p>価格：<%= price %>円</p>\n                    <p><%= contributor %></p>\n                    <p><%= publisher %></p>\n                    <a href="<%= url %>" target="_blank"><button type="button" class="btn btn-warning">Amazonで購入</button> </a>\n                </div>\n            </li>'
+
 nav=[];
 function templeterender(items){
 for (let i = 0; i < items.length; i++) {
