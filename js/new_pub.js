@@ -117,7 +117,7 @@ json_data= "https://kyukyunyorituryo.github.io/new_pub/json/"+day+"j.json"
 getJSON(json_data)
 $('#frame').children().remove();
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
-
+document.getElementById('release').textContent=day+'の新刊'
 }
 
 function getNextYMD(now){
@@ -128,6 +128,24 @@ function getNextYMD(now){
     var result = y + m + d;
     return result;
   }
+var getQuery = function() {
+	var query_array = [];
+	
+	// クエリ文字列を取得して「&」で分割
+	var query_list = window.location.search.substring(1).split('&');
+
+	// 値取得用のテンポラリ変数
+	var tmp_arr;
+	
+	// 分割したクエリ文字列の配列から、値を取り出す
+	query_list.forEach( function(e, i, a) {
+		tmp_arr = e.split('=');
+		query_array[ tmp_arr[0] ] = tmp_arr[1];
+	})
+   query=query_array.day
+	return query; 
+}
+
 
 document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
@@ -146,7 +164,11 @@ selectdays($(this).val())
 var items
 var now   = new Date();
 nextday =getNextYMD(now);
-
+query=getQuery()
+if (query!==undefined){
+nextday=query
+document.getElementById('release').textContent=nextday+'の新刊'
+}
 json_data= "https://kyukyunyorituryo.github.io/new_pub/json/"+nextday+"j.json"
 getJSON(json_data)
 
