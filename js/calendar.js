@@ -1,8 +1,8 @@
             $(function () {
                 $('#datetimepicker1').datetimepicker({
                minDate:'2020/03/01',
-               maxDate:'2020/05/31',
-               disabledDates:['2020/05/04'],
+               maxDate:'2020/06/30',
+               disabledDates:['2020/05/04','2020/06/07','2020/06/14','2020/06/21'],
             dayViewHeaderFormat: 'YYYY年 MMMM',
             tooltips: {
                 close: '閉じる',
