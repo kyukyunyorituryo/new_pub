@@ -107,6 +107,18 @@ templeterender(mooks)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
+//新書
+function newbookfn(){
+var newbook = document.getElementById('newbook');
+newbook.addEventListener('click', function() {
+nav=[]
+newbooks = items.filter(word => word.Booktype =='新書');
+$('#frame').children().remove();
+templeterender(newbooks)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+
 
 //日付を選択して切り替える
 function selectdays(day){
@@ -156,7 +168,7 @@ largebookfn()
 pocketeditionfn()
 paperbackfn()
 mookfn()
-
+newbookfn()
 $('#datetimepicker1').on("dp.change", function(e){
 
 selectdays($(this).val())
