@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="新刊チェック" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_pub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_pub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="新刊チェッカー">
+<meta name="twitter:description" content="新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_pub/twitter.jpg">
+<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>新刊チェック</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <p><a class="nav-link" href="list.html">発売日一覧</a></p>
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+
+        <h2 class="alert alert-success">種類の選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='abook' type="button" class="btn btn-outline-secondary">単行本</button>
+<button id='softcover' type="button" class="btn btn-outline-success">ソフトカバー</button>
+<button id='largebook' type="button" class="btn btn-outline-danger">大型本</button>
+<button id='pocketedition' type="button" class="btn btn-outline-warning">文庫</button>
+<button id='paperback' type="button" class="btn btn-outline-info">ペーパーバック</button>
+<button id='mook'  type="button" class="btn btn-outline-dark">ムック</button>
+<button id='newbook' type="button" class="btn btn-outline-primary">新書</button>
+<!-- 後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ img.mr-3 {
+ vertical-align: middle;
+    }
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">明日発売される本</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41N2mJne+wL.jpg" class="mr-3" alt="文豪たちの口説き本"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>文豪たちの口説き本</h5>
+                    <p>価格：1320円</p>
+                    <p>麵屋武蔵(著)</p>
+                    <p>彩図社</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4801304516?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41eNPJQE3KL.jpg" class="mr-3" alt="日本が食われる: いま、中国と日本の「食」で起こっていること"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>日本が食われる: いま、中国と日本の「食」で起こっていること</h5>
+                    <p>価格：1430円</p>
+                    <p>松岡 久蔵(著)</p>
+                    <p>彩図社</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4801304583?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41Jti4bWHJL.jpg" class="mr-3" alt="戦後教育学の再検討 下: 教養・平和・未来"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>戦後教育学の再検討 下: 教養・平和・未来</h5>
+                    <p>価格：7040円</p>
+                    <p>田中 孝彦(編集)</p>
+                    <p>東京大学出版会</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4130513524?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41qajnGWnDL.jpg" class="mr-3" alt="戦後教育学の再検討 上: 歴史・発達・人権"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>戦後教育学の再検討 上: 歴史・発達・人権</h5>
+                    <p>価格：7040円</p>
+                    <p>田中 孝彦(編集)</p>
+                    <p>東京大学出版会</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4130513516?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/415FyJpYlVL.jpg" class="mr-3" alt="完全版 ピーナッツ全集 6: スヌーピー1961~1962"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>完全版 ピーナッツ全集 6: スヌーピー1961~1962</h5>
+                    <p>価格：3080円</p>
+                    <p>チャールズ・M・シュルツ(著)</p>
+                    <p>河出書房新社</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4309629067?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51bcW5YUz0L.jpg" class="mr-3" alt="完全版 ピーナッツ全集 5: スヌーピー1959~1960"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>完全版 ピーナッツ全集 5: スヌーピー1959~1960</h5>
+                    <p>価格：3080円</p>
+                    <p>チャールズ・M・シュルツ(著)</p>
+                    <p>河出書房新社</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4309629059?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/411RMqQahFL.jpg" class="mr-3" alt="AORライトメロウ プレミアム 01 Legends &amp; Pre-AOR"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>AORライトメロウ プレミアム 01 Legends &amp; Pre-AOR</h5>
+                    <p>価格：2860円</p>
+                    <p>金澤寿和 福田直木(著)</p>
+                    <p>シンコーミュージック</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4401649095?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41f51IbHbZL.jpg" class="mr-3" alt="ラプンツェル ザ・シリーズ スクラッチアート"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ラプンツェル ザ・シリーズ スクラッチアート</h5>
+                    <p>価格：1650円</p>
+                    <p>キャラぱふぇ編集部(編集)</p>
+                    <p>KADOKAWA</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4049131633?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41cMm8SUc9L.jpg" class="mr-3" alt="毎日輝くポジティブ英語 [音声DL付]"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>毎日輝くポジティブ英語 [音声DL付]</h5>
+                    <p>価格：1540円</p>
+                    <p>石津 奈々(著)</p>
+                    <p>ベレ出版</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/486064624X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/412GU1Hje8L.jpg" class="mr-3" alt="THE北斎 冨嶽三十六景ARTBOX"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>THE北斎 冨嶽三十六景ARTBOX</h5>
+                    <p>価格：2420円</p>
+                    <p>すみだ北斎美術館(著)</p>
+                    <p>講談社</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4065199492?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41qXPlVehzL.jpg" class="mr-3" alt="日本小説批評の源流"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>日本小説批評の源流</h5>
+                    <p>価格：3520円</p>
+                    <p>渡部 直己(著)</p>
+                    <p>河出書房新社</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4309028888?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41-JPILz9kL.jpg" class="mr-3" alt="パーティをしませんか: 入江麻木のもてなし料理"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>パーティをしませんか: 入江麻木のもてなし料理</h5>
+                    <p>価格：3520円</p>
+                    <p>入江 麻木(著)</p>
+                    <p>河出書房新社</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4309288006?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41P4naTIO8L.jpg" class="mr-3" alt="ディズニープリンセスとABC (ディズニー幼児絵本(書籍))"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ディズニープリンセスとABC (ディズニー幼児絵本(書籍))</h5>
+                    <p>価格：1430円</p>
+                    <p>講談社(編集)</p>
+                    <p>講談社</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4065195292?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31gXoEhe8sL.jpg" class="mr-3" alt="音速の刃"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>音速の刃</h5>
+                    <p>価格：2255円</p>
+                    <p>未須本 有生(著)</p>
+                    <p>文藝春秋</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4163912193?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41tBCJGQFZL.jpg" class="mr-3" alt="国境を越える危機・外交と制度による対応: アジア太平洋と中東"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>国境を越える危機・外交と制度による対応: アジア太平洋と中東</h5>
+                    <p>価格：6380円</p>
+                    <p>東大社研(編集)</p>
+                    <p>東京大学出版会</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4130302183?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41tKWEjfzDL.jpg" class="mr-3" alt="中国司法の政治史 1928-1949"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>中国司法の政治史 1928-1949</h5>
+                    <p>価格：5830円</p>
+                    <p>吉見 崇(著)</p>
+                    <p>東京大学出版会</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4130261665?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41R8AZejcbL.jpg" class="mr-3" alt="中国の近代的刑事裁判: 刑事司法改革からみる中国近代法史"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>中国の近代的刑事裁判: 刑事司法改革からみる中国近代法史</h5>
+                    <p>価格：7920円</p>
+                    <p>久保 茉莉子(著)</p>
+                    <p>東京大学出版会</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4130261657?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/414YZfwNpLL.jpg" class="mr-3" alt="地域の危機・釜石の対応: 多層化する構造"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>地域の危機・釜石の対応: 多層化する構造</h5>
+                    <p>価格：6380円</p>
+                    <p>東大社研(編集)</p>
+                    <p>東京大学出版会</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4130302175?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31NVEC0ReUL.jpg" class="mr-3" alt="人の資本主義"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>人の資本主義</h5>
+                    <p>価格：3080円</p>
+                    <p>中島 隆博(編集)</p>
+                    <p>東京大学出版会</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4130130986?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41zwi+IB37L.jpg" class="mr-3" alt="近代天皇制と東京: 儀礼空間からみた都市・建築史"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>近代天皇制と東京: 儀礼空間からみた都市・建築史</h5>
+                    <p>価格：7700円</p>
+                    <p>長谷川 香(著)</p>
+                    <p>東京大学出版会</p>
+<p>カテゴリー：</p>
+                    <a href="https://www.amazon.co.jp/dp/4130668617?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
