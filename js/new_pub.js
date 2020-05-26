@@ -185,7 +185,14 @@ var url = location.href ;
 //frameに子要素がなかったら実行する
 child=document.getElementById('frame').children
 if (child.length==0){
+
 json_data= "https://kyukyunyorituryo.github.io/new_pub/json/"+nextday+"j.json"
+getJSON(json_data)
+    for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}
+else{
+date=url.match(/\d{8}/gi)[0]
+json_data= "https://kyukyunyorituryo.github.io/new_pub/json/"+date+"j.json"
 getJSON(json_data)
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }
