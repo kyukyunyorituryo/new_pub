@@ -169,6 +169,16 @@ pocketeditionfn()
 paperbackfn()
 mookfn()
 newbookfn()
+
+bookid=["comic","abook","softcover","largebook","pocketedition","paperback","mook","newbook"]
+booktype=["コミック","単行本","単行本（ソフトカバー）","大型本","文庫","ペーパーバック","ムック","新書"]
+const bts = document.getElementsByClassName('btn');
+[...bts].forEach(bt=>{
+  bt.addEventListener('click',(e)=>{
+    console.log('you clicked' + bt.id + '.')
+    
+  });
+});
 $('#datetimepicker1').on("dp.change", function(e){
 
 selectdays($(this).val())
