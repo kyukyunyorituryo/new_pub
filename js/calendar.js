@@ -2,7 +2,7 @@
                 $('#datetimepicker1').datetimepicker({
                minDate:'2020/01/01',
                maxDate:'2020/07/31',
-               disabledDates:['2020/01/03','2020/01/17','2020/01/19','2020/05/04','2020/06/07'],
+               disabledDates:['2020/01/03','2020/01/17','2020/01/19','2020/05/04','2020/06/07','2020/07/26'],
             dayViewHeaderFormat: 'YYYY年 MMMM',
             tooltips: {
                 close: '閉じる',
