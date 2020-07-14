@@ -141,6 +141,20 @@ function getNextYMD(now){
     var result = y + m + d;
     return result;
   }
+function searchword(){
+var searchbook = document.getElementById('search');
+searchbook.addEventListener('click', dosearch, false);
+}
+function dosearch(){
+nav=[]
+var searchtext = document.getElementById('searchtext').value;
+searchbooks = items.filter(word => (word.Title.includes(searchtext)||word.Publisher.includes(searchtext)||word.Contributor.includes(searchtext)||word.Category.includes(searchtext)));
+$('#frame').children().remove();
+templeterender(searchbooks)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}
+
+
 var getQuery = function() {
 	var query_array = [];
 	
@@ -155,7 +169,7 @@ var getQuery = function() {
 		tmp_arr = e.split('=');
 		query_array[ tmp_arr[0] ] = tmp_arr[1];
 	})
-   query=query_array.day
+   query=query_array.search
 	return query; 
 }
 
@@ -169,6 +183,7 @@ pocketeditionfn()
 paperbackfn()
 mookfn()
 newbookfn()
+searchword()
 
 bookid=["comic","abook","softcover","largebook","pocketedition","paperback","mook","newbook"]
 booktype=["コミック","単行本","単行本（ソフトカバー）","大型本","文庫","ペーパーバック","ムック","新書"]
@@ -186,11 +201,13 @@ selectdays($(this).val())
 var items
 var now   = new Date();
 nextday =getNextYMD(now);
+
 query=getQuery()
 if (query!==undefined){
-nextday=query
-document.getElementById('release').textContent=nextday+'の新刊'
+queryword=decodeURI(query)
+document.getElementById('searchtext').value=queryword
 }
+
 var url = location.href ;
 //frameに子要素がなかったら実行する
 child=document.getElementById('frame').children
@@ -206,4 +223,5 @@ json_data= "https://kyukyunyorituryo.github.io/new_pub/json/"+date+"j.json"
 getJSON(json_data)
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }
+dosearch()
   });
