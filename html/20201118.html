@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="新刊チェック" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_pub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_pub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="新刊チェッカー">
+<meta name="twitter:description" content="新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_pub/twitter.jpg">
+<link rel="shortcut icon" href="../favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="../favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>新刊チェック</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_epub/">kindle新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_pub/">紙の新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/kindle_sale/">kindleセール</a>
+                  </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">絞り込み検索</h2>
+        <p>著者名、タイトル、カテゴリなどから絞り込みができます。</p>
+                <div class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" id="searchtext" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0"  id="search">検索</button>
+                </div>
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <p><a class="nav-link" href="../list.html">発売日一覧</a></p>
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+
+        <h2 class="alert alert-success">種類の選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='abook' type="button" class="btn btn-outline-secondary">単行本</button>
+<button id='softcover' type="button" class="btn btn-outline-success">ソフトカバー</button>
+<button id='largebook' type="button" class="btn btn-outline-danger">大型本</button>
+<button id='pocketedition' type="button" class="btn btn-outline-warning">文庫</button>
+<button id='paperback' type="button" class="btn btn-outline-info">ペーパーバック</button>
+<button id='mook'  type="button" class="btn btn-outline-dark">ムック</button>
+<button id='newbook' type="button" class="btn btn-outline-primary">新書</button>
+<!-- 後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ img.mr-3 {
+ vertical-align: middle;
+    }
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">20201118の新刊</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="OPEN TO THINK~最新研究が証明した 自分の小さな枠から抜け出す思考法"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>OPEN TO THINK~最新研究が証明した 自分の小さな枠から抜け出す思考法</h5>
+                    <p>価格：1980円、ポイント：20</p>
+                    <p>ダン・ポンテクラフト(著)</p>
+                    <p>出版社：あさ出版</p>
+<p>カテゴリー：仕事術・整理法,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4866672323?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="人に紹介したくなる自動車学校の すごいカイゼン(仮)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>人に紹介したくなる自動車学校の すごいカイゼン(仮)</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>藤井康弘(著)</p>
+                    <p>出版社：あさ出版</p>
+<p>カテゴリー：環境とビジネス,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4866672471?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="声がでなくなったら読む本(仮)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>声がでなくなったら読む本(仮)</h5>
+                    <p>価格：1430円、ポイント：14</p>
+                    <p>渡邊雄介(著)</p>
+                    <p>出版社：あさ出版</p>
+<p>カテゴリー：健康法,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4866672455?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="ものがたる近世琉球: 喫煙・園芸・豚飼育の考古学"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ものがたる近世琉球: 喫煙・園芸・豚飼育の考古学</h5>
+                    <p>価格：1870円、ポイント：19</p>
+                    <p>石井 龍太(著)</p>
+                    <p>出版社：吉川弘文館</p>
+<p>カテゴリー：ジャンル別,吉川弘文館,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4642059121?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="Disney 100パズルぬりえ プレミアム"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>Disney 100パズルぬりえ プレミアム</h5>
+                    <p>価格：2530円、ポイント：25</p>
+                    <p>講談社(編集)</p>
+                    <p>出版社：講談社</p>
+<p>カテゴリー：ジャンル別,講談社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4065191122?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/418WraAkhpL.jpg" class="mr-3 lazyload" alt="授業のユニバーサルデザイン vol.12"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>授業のユニバーサルデザイン vol.12</h5>
+                    <p>価格：なし円、ポイント：25</p>
+                    <p>日本授業UD学会(編集)</p>
+                    <p>出版社：東洋館出版社</p>
+<p>カテゴリー：ジャンル別,東洋館出版社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4491039488?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41q6Fyt4KaL.jpg" class="mr-3 lazyload" alt="〈沈黙〉の自伝的民族誌(オートエスノグラフィー) サイレント・アイヌの痛みと救済の物語"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>〈沈黙〉の自伝的民族誌(オートエスノグラフィー) サイレント・アイヌの痛みと救済の物語</h5>
+                    <p>価格：3850円、ポイント：39</p>
+                    <p>石原 真衣(著)</p>
+                    <p>出版社：北海道大学出版会</p>
+<p>カテゴリー：アイヌ,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4832968572?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51yp8Ayln+L.jpg" class="mr-3 lazyload" alt="八百万嬲り~鬼囚われ編 (occupai)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>八百万嬲り~鬼囚われ編 (occupai)</h5>
+                    <p>価格：1100円、ポイント：11</p>
+                    <p>prhs(著)</p>
+                    <p>出版社：ブラスト出版</p>
+<p>カテゴリー：コミック,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4434276883?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41VCPJT1yZL.jpg" class="mr-3 lazyload" alt="わかばちゃんと学ぶ サーバー監視入門"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>わかばちゃんと学ぶ サーバー監視入門</h5>
+                    <p>価格：2453円、ポイント：25</p>
+                    <p>湊川あい(著)</p>
+                    <p>出版社：シーアンドアール研究所</p>
+<p>カテゴリー：サーバ,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4863543212?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51o+6NAlKSL.jpg" class="mr-3 lazyload" alt="公務員試験 新スーパー過去問ゼミ6 会計学"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>公務員試験 新スーパー過去問ゼミ6 会計学</h5>
+                    <p>価格：1980円、ポイント：20</p>
+                    <p>資格試験研究会(編集)</p>
+                    <p>出版社：実務教育出版</p>
+<p>カテゴリー：ジャンル別,実務教育出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4788937395?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51CglZZawFL.jpg" class="mr-3 lazyload" alt="公務員試験 新スーパー過去問ゼミ6 刑法"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>公務員試験 新スーパー過去問ゼミ6 刑法</h5>
+                    <p>価格：1980円、ポイント：20</p>
+                    <p>資格試験研究会(編集)</p>
+                    <p>出版社：実務教育出版</p>
+<p>カテゴリー：ジャンル別,実務教育出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4788937298?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51qqM0HBSRL.jpg" class="mr-3 lazyload" alt="公務員試験 新スーパー過去問ゼミ6 教育学・心理学"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>公務員試験 新スーパー過去問ゼミ6 教育学・心理学</h5>
+                    <p>価格：1980円、ポイント：20</p>
+                    <p>資格試験研究会(編集)</p>
+                    <p>出版社：実務教育出版</p>
+<p>カテゴリー：ジャンル別,実務教育出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4788937409?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41UltSLEU6L.jpg" class="mr-3 lazyload" alt="One Day Esquisse:考える「視点」がみつかるデザインの教室: 日々の発想をかたちにする、見ること・つくることの練習"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>One Day Esquisse:考える「視点」がみつかるデザインの教室: 日々の発想をかたちにする、見ること・つくることの練習</h5>
+                    <p>価格：1980円、ポイント：36</p>
+                    <p>原田 祐馬(著)</p>
+                    <p>出版社：誠文堂新光社</p>
+<p>カテゴリー：ジャンル別,誠文堂新光社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4416620586?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/512Du0oug8L.jpg" class="mr-3 lazyload" alt="ゲノム編集食品が変える食の未来"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ゲノム編集食品が変える食の未来</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>松永和紀(著)</p>
+                    <p>出版社：ウェッジ</p>
+<p>カテゴリー：科学・テクノロジー,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4863102313?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/417erLdsySL.jpg" class="mr-3 lazyload" alt="ー仏像イラストレーターが作ったー仏像ハンドブック（仮）"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ー仏像イラストレーターが作ったー仏像ハンドブック（仮）</h5>
+                    <p>価格：1760円、ポイント：18</p>
+                    <p>田中ひろみ(著)</p>
+                    <p>出版社：ウェッジ</p>
+<p>カテゴリー：仏教美術,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4863102291?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="マンガ 投資のことはなにもわかりませんが、 素人でも株でお金持ちになれる方法を教えてください"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>マンガ 投資のことはなにもわかりませんが、 素人でも株でお金持ちになれる方法を教えてください</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p>橘 玲(著)</p>
+                    <p>出版社：講談社</p>
+<p>カテゴリー：投資・金融・会社経営,コミック,講談社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4065208726?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41AwVMCwYxL.jpg" class="mr-3 lazyload" alt="宇垣美里のコスメ愛:私はメイクも美容もオタクなんです"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>宇垣美里のコスメ愛:私はメイクも美容もオタクなんです</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>宇垣 美里(著)</p>
+                    <p>出版社：小学館</p>
+<p>カテゴリー：メイクアップ,その他,小学館,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4093106657?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="労働と経済 目標8"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>労働と経済 目標8</h5>
+                    <p>価格：2420円、ポイント：24</p>
+                    <p>稲葉 茂勝(著)</p>
+                    <p>出版社：ポプラ社</p>
+<p>カテゴリー：ジャンル別,ポプラ社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4591167410?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="インフラ 目標9"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>インフラ 目標9</h5>
+                    <p>価格：2420円、ポイント：24</p>
+                    <p>稲葉 茂勝(著)</p>
+                    <p>出版社：ポプラ社</p>
+<p>カテゴリー：ジャンル別,ポプラ社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4591167429?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="ふたたび蘇れ! 首里城"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ふたたび蘇れ! 首里城</h5>
+                    <p>価格：2860円、ポイント：29</p>
+                    <p>株式会社 碧水社(編集)</p>
+                    <p>出版社：平凡社</p>
+<p>カテゴリー：ジャンル別,平凡社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/458294602X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51RN5OoNV+L.jpg" class="mr-3 lazyload" alt="アソコ洗い屋さん!~好きだらけのナカに注いで~ (occupai)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>アソコ洗い屋さん!~好きだらけのナカに注いで~ (occupai)</h5>
+                    <p>価格：1100円、ポイント：11</p>
+                    <p>トヨ(著)</p>
+                    <p>出版社：ブラスト出版</p>
+<p>カテゴリー：コミック,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4434279238?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51Zqcczq87L.jpg" class="mr-3 lazyload" alt="指先から本気の熱情~チャラ男消防士はまっすぐな目で私を抱いた~4 (Clair TLcomics)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>指先から本気の熱情~チャラ男消防士はまっすぐな目で私を抱いた~4 (Clair TLcomics)</h5>
+                    <p>価格：748円、ポイント：7</p>
+                    <p>川野タニシ(著)</p>
+                    <p>出版社：彗星社</p>
+<p>カテゴリー：コミック,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/443427922X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41nb9mcEt0L.jpg" class="mr-3 lazyload" alt="東北のチカラ みちのく魂と池田大作のまなざし"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>東北のチカラ みちのく魂と池田大作のまなざし</h5>
+                    <p>価格：1100円、ポイント：11</p>
+                    <p></p>
+                    <p>出版社：株式会社潮出版社</p>
+<p>カテゴリー：創価学会,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4267022445?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/512vS3oUsdL.jpg" class="mr-3 lazyload" alt="身近な科学が人に教えられるほどよくわかる本 「朝起きてから、寝るまで」を科学する"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>身近な科学が人に教えられるほどよくわかる本 「朝起きてから、寝るまで」を科学する</h5>
+                    <p>価格：1540円、ポイント：28</p>
+                    <p>左巻健男(著)</p>
+                    <p>出版社：SBクリエイティブ</p>
+<p>カテゴリー：科学読み物,SBクリエイティブ,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4815606676?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51aGugFjoQL.jpg" class="mr-3 lazyload" alt="ふきさんの アイデアおもちゃ大百科"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ふきさんの アイデアおもちゃ大百科</h5>
+                    <p>価格：1980円、ポイント：20</p>
+                    <p>佐藤蕗(著)</p>
+                    <p>出版社：偕成社</p>
+<p>カテゴリー：ジャンル別,偕成社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4035242101?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/5164qHmbLtL.jpg" class="mr-3 lazyload" alt="オール・アメリカン・ボーイズ"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>オール・アメリカン・ボーイズ</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>ジェイソン・レノルズ(著)</p>
+                    <p>出版社：偕成社</p>
+<p>カテゴリー：ジャンル別,偕成社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4037269805?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="この一冊で本格的にできる!タロット占いの基本 新版"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>この一冊で本格的にできる!タロット占いの基本 新版</h5>
+                    <p>価格：1694円、ポイント：30</p>
+                    <p>吉田ルナ(監修)</p>
+                    <p>出版社：メイツ出版</p>
+<p>カテゴリー：ジャンル別,メイツ出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4780424062?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="いまを生きるための社会学"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いまを生きるための社会学</h5>
+                    <p>価格：4180円、ポイント：42</p>
+                    <p>友枝 敏雄(編集)</p>
+                    <p>出版社：丸善出版</p>
+<p>カテゴリー：ジェンダー,丸善,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4621305557?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="毒だし!舌みがき: 細菌・ウイルスを退治して腸をきれいにする健康習慣"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>毒だし!舌みがき: 細菌・ウイルスを退治して腸をきれいにする健康習慣</h5>
+                    <p>価格：1430円、ポイント：14</p>
+                    <p>花田 信弘(著)</p>
+                    <p>出版社：河出書房新社</p>
+<p>カテゴリー：ジャンル別,河出書房新社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/430928826X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="突然何となく隣の席の同僚とキスしたくなりました (ミリオンコミックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>突然何となく隣の席の同僚とキスしたくなりました (ミリオンコミックス)</h5>
+                    <p>価格：770円、ポイント：8</p>
+                    <p>三浦 コズミ(著)</p>
+                    <p>出版社：大洋図書</p>
+<p>カテゴリー：ボーイズラブコミックス,大洋図書,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4813054250?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="マンガでわかる 仕事ができる人は持っている たった5つの仕事力"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>マンガでわかる 仕事ができる人は持っている たった5つの仕事力</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p>白潟 敏朗(著)</p>
+                    <p>出版社：講談社</p>
+<p>カテゴリー：ロジカル・シンキング,コミック,講談社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4065212189?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="日本の科学者2020年12月号 (635号)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>日本の科学者2020年12月号 (635号)</h5>
+                    <p>価格：800円、ポイント：8</p>
+                    <p>日本科学者会議(編集)</p>
+                    <p>出版社：本の泉社</p>
+<p>カテゴリー：ジャンル別,本の泉社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4780713668?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="作文と教育2020年 日本子ども文詩集"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>作文と教育2020年 日本子ども文詩集</h5>
+                    <p>価格：1100円、ポイント：11</p>
+                    <p>日本作文の会(編集)</p>
+                    <p>出版社：本の泉社</p>
+<p>カテゴリー：ジャンル別,本の泉社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4780717396?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="国際協力キャリアガイド2020-21: 世界をアップデートしよう"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>国際協力キャリアガイド2020-21: 世界をアップデートしよう</h5>
+                    <p>価格：1100円、ポイント：11</p>
+                    <p>国際開発ジャーナル社(編集)</p>
+                    <p>出版社：国際開発ジャーナル社</p>
+<p>カテゴリー：ジャンル別,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4875398107?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/5148BQZryhL.jpg" class="mr-3 lazyload" alt="世界のふしぎな木の実図鑑"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>世界のふしぎな木の実図鑑</h5>
+                    <p>価格：3300円、ポイント：33</p>
+                    <p>小林 智洋(著)</p>
+                    <p>出版社：創元社</p>
+<p>カテゴリー：植物学,創元社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4422430335?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="江戸絵皿絵解き事典 絵手本でわかる皿絵の意味"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>江戸絵皿絵解き事典 絵手本でわかる皿絵の意味</h5>
+                    <p>価格：1980円、ポイント：20</p>
+                    <p>河村 通夫(著)</p>
+                    <p>出版社：講談社</p>
+<p>カテゴリー：ジャンル別,講談社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4065213592?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/31DhNTijLiL.jpg" class="mr-3 lazyload" alt="ダブルフェイスにくちづけ (G-Lish Comics)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ダブルフェイスにくちづけ (G-Lish Comics)</h5>
+                    <p>価格：713円、ポイント：7</p>
+                    <p>柳瀬せの(著)</p>
+                    <p>出版社：Jパブリッシング</p>
+<p>カテゴリー：ボーイズラブコミックス,コミック,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4866693452?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51SA7POfAIL.jpg" class="mr-3 lazyload" alt="はじめてでもおいしく作れる リゾット・ピラフ・パエリア"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>はじめてでもおいしく作れる リゾット・ピラフ・パエリア</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p>上田 淳子(著)</p>
+                    <p>出版社：家の光協会</p>
+<p>カテゴリー：簡単レシピ,家の光協会,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4259566687?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41P-eh0TswL.jpg" class="mr-3 lazyload" alt="茶葉でおいしい至福のスイーツ (香り豊かな)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>茶葉でおいしい至福のスイーツ (香り豊かな)</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>坂田 阿希子(著)</p>
+                    <p>出版社：家の光協会</p>
+<p>カテゴリー：デザート・スイーツ,家の光協会,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4259566679?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41xiD18Jf2L.jpg" class="mr-3 lazyload" alt="18歳からの自炊塾 九州大学 生き方が変わる3か月"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>18歳からの自炊塾 九州大学 生き方が変わる3か月</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p>比良松 道一(著)</p>
+                    <p>出版社：家の光協会</p>
+<p>カテゴリー：教育学,家の光協会,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4259566695?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="すごい! みそ汁 (ラクで、おいしく、健康になれる)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>すごい! みそ汁 (ラクで、おいしく、健康になれる)</h5>
+                    <p>価格：1210円、ポイント：12</p>
+                    <p>小田 真規子(著)</p>
+                    <p>出版社：家の光協会</p>
+<p>カテゴリー：和食,料理の基礎,簡単レシピ,家の光協会,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4259566709?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="ふたりエスケープ(1) (1) (百合姫コミックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ふたりエスケープ(1) (1) (百合姫コミックス)</h5>
+                    <p>価格：748円、ポイント：7</p>
+                    <p>田口 囁一(著)</p>
+                    <p>出版社：一迅社</p>
+<p>カテゴリー：コミック,一迅社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4758021821?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51mOC7PCNxL.jpg" class="mr-3 lazyload" alt="黄昏 In the Twilight"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>黄昏 In the Twilight</h5>
+                    <p>価格：3740円、ポイント：37</p>
+                    <p>水口 博也(著)</p>
+                    <p>出版社：創元社</p>
+<p>カテゴリー：動物学,創元社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4422430343?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51Bb2uED1mL.jpg" class="mr-3 lazyload" alt="実は、内向的な人間です"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>実は、内向的な人間です</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>ナム・インスク(著)</p>
+                    <p>出版社：創元社</p>
+<p>カテゴリー：その他,創元社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4422930877?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="欠けた月とドーナッツ(2) (2) (百合姫コミックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>欠けた月とドーナッツ(2) (2) (百合姫コミックス)</h5>
+                    <p>価格：937円、ポイント：9</p>
+                    <p>雨水 汐(著)</p>
+                    <p>出版社：一迅社</p>
+<p>カテゴリー：コミック,一迅社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/475802183X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="大学入学共通テスト 日本史Bが1冊でしっかりわかる本【近世~現代編】"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>大学入学共通テスト 日本史Bが1冊でしっかりわかる本【近世~現代編】</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>塚原 哲也(著)</p>
+                    <p>出版社：かんき出版</p>
+<p>カテゴリー：センター試験対策,かんき出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4761230215?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="図解入門業界研究 最新 福祉ビジネスの動向とカラクリがよくわかる本 [第2版]"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>図解入門業界研究 最新 福祉ビジネスの動向とカラクリがよくわかる本 [第2版]</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>大坪信喜(著)</p>
+                    <p>出版社：秀和システム</p>
+<p>カテゴリー：業界研究,秀和システム,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4798062812?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="世界一わかりやすいイカとタコの図鑑"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>世界一わかりやすいイカとタコの図鑑</h5>
+                    <p>価格：4400円、ポイント：44</p>
+                    <p>ロジャー・ハンロン(著)</p>
+                    <p>出版社：化学同人</p>
+<p>カテゴリー：ジャンル別,化学同人,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4759820523?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="その笑顔好きじゃない3 (3) (Colorful! コミックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>その笑顔好きじゃない3 (3) (Colorful! コミックス)</h5>
+                    <p>価格：660円、ポイント：7</p>
+                    <p>駄犬ひろし(著)</p>
+                    <p>出版社：アイエムエー</p>
+<p>カテゴリー：コミック,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4910340025?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="ぼくらのまちにおいでよ"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ぼくらのまちにおいでよ</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>大桃 洋祐(著)</p>
+                    <p>出版社：小学館</p>
+<p>カテゴリー：雑誌,小学館,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4097250833?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="君は008 (11)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>君は008 (11)</h5>
+                    <p>価格：499円、ポイント：5</p>
+                    <p>松江名 俊(著)</p>
+                    <p>出版社：小学館</p>
+<p>カテゴリー：コミック,小学館,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/409850278X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="古見さんは、コミュ症です。 (19)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>古見さんは、コミュ症です。 (19)</h5>
+                    <p>価格：499円、ポイント：5</p>
+                    <p>オダ トモヒト(著)</p>
+                    <p>出版社：小学館</p>
+<p>カテゴリー：コミック,小学館,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4098502771?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51lqA3YaZAL.jpg" class="mr-3 lazyload" alt="イルカも泳ぐわい。"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>イルカも泳ぐわい。</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p>加納 愛子(著)</p>
+                    <p>出版社：筑摩書房</p>
+<p>カテゴリー：ジャンル別,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4480815597?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="日刊コンピ断層インパクト!"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>日刊コンピ断層インパクト!</h5>
+                    <p>価格：1980円、ポイント：20</p>
+                    <p>田中洋平&amp;日刊コンピ研究チーム(著)</p>
+                    <p>出版社：秀和システム</p>
+<p>カテゴリー：ジャンル別,秀和システム,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4798063649?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/517ZlDDngtL.jpg" class="mr-3 lazyload" alt="不動産投資の羅針盤 豊かな不動産ライフを手に入れる一番わかりやすい教科書"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>不動産投資の羅針盤 豊かな不動産ライフを手に入れる一番わかりやすい教科書</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>TerraCoya大家の会(著)</p>
+                    <p>出版社：ソシム</p>
+<p>カテゴリー：不動産投資,ソシム,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4802612826?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="JR電車編成表2021冬"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>JR電車編成表2021冬</h5>
+                    <p>価格：2970円、ポイント：30</p>
+                    <p></p>
+                    <p>出版社：交通新聞社</p>
+<p>カテゴリー：ジャンル別,交通新聞社,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4330082209?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="中国の国内移動: 内なる他者との邂逅"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>中国の国内移動: 内なる他者との邂逅</h5>
+                    <p>価格：3960円、ポイント：40</p>
+                    <p>川口 幸大(編集)</p>
+                    <p>出版社：京都大学学術出版会</p>
+<p>カテゴリー：ジャンル別,京都大学学術出版会,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4814002998?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="アフター&amp;ウィズ「コロナ」時代を生き抜く 新・会社の資金繰り(仮)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>アフター&amp;ウィズ「コロナ」時代を生き抜く 新・会社の資金繰り(仮)</h5>
+                    <p>価格：1760円、ポイント：18</p>
+                    <p>エッサム(著)</p>
+                    <p>出版社：あさ出版</p>
+<p>カテゴリー：経営戦略,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4866672463?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="点つなぎパーク&amp;ファミリー 師走特別号 (POWER MOOK, 47)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>点つなぎパーク&amp;ファミリー 師走特別号 (POWER MOOK, 47)</h5>
+                    <p>価格：550円、ポイント：6</p>
+                    <p></p>
+                    <p>出版社：大洋図書</p>
+<p>カテゴリー：ジャンル別,大洋図書,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4813083471?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="ひきこもり×在宅×IT=可能性無限大! 株式会社ウチらめっちゃ細かいんで"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ひきこもり×在宅×IT=可能性無限大! 株式会社ウチらめっちゃ細かいんで</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>佐藤啓(著)</p>
+                    <p>出版社：あさ出版</p>
+<p>カテゴリー：環境とビジネス,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/486667248X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="NHK CD ラジオ まいにちロシア語 2020年12月号"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>NHK CD ラジオ まいにちロシア語 2020年12月号</h5>
+                    <p>価格：1656円、ポイント：17</p>
+                    <p></p>
+                    <p>出版社：NHK出版</p>
+<p>カテゴリー：ジャンル別,NHK出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4143342855?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="NHK CD ラジオ まいにちイタリア語 2020年12月号"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>NHK CD ラジオ まいにちイタリア語 2020年12月号</h5>
+                    <p>価格：1656円、ポイント：17</p>
+                    <p></p>
+                    <p>出版社：NHK出版</p>
+<p>カテゴリー：ジャンル別,NHK出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4143362856?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="NHK CD ラジオ まいにちスペイン語 2020年12月号"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>NHK CD ラジオ まいにちスペイン語 2020年12月号</h5>
+                    <p>価格：1656円、ポイント：17</p>
+                    <p></p>
+                    <p>出版社：NHK出版</p>
+<p>カテゴリー：ジャンル別,NHK出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4143352850?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="NHK CD ラジオ まいにちドイツ語 2020年12月号"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>NHK CD ラジオ まいにちドイツ語 2020年12月号</h5>
+                    <p>価格：1656円、ポイント：17</p>
+                    <p></p>
+                    <p>出版社：NHK出版</p>
+<p>カテゴリー：ジャンル別,NHK出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4143302853?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="NHK CD ラジオ まいにちハングル講座 2020年12月号"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>NHK CD ラジオ まいにちハングル講座 2020年12月号</h5>
+                    <p>価格：1656円、ポイント：17</p>
+                    <p></p>
+                    <p>出版社：NHK出版</p>
+<p>カテゴリー：ジャンル別,NHK出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/414333285X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="NHK CD ラジオ ステップアップ中国語 2020年12月号"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>NHK CD ラジオ ステップアップ中国語 2020年12月号</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p></p>
+                    <p>出版社：NHK出版</p>
+<p>カテゴリー：ジャンル別,NHK出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/414366285X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="なし" class="mr-3 lazyload" alt="NHK CD ラジオ まいにちフランス語 2020年12月号"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>NHK CD ラジオ まいにちフランス語 2020年12月号</h5>
+                    <p>価格：1656円、ポイント：17</p>
+                    <p></p>
+                    <p>出版社：NHK出版</p>
+<p>カテゴリー：ジャンル別,NHK出版,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4143312859?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41jXHVTV5IL.jpg" class="mr-3 lazyload" alt="君は君らしく、いればいいんだよ。"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>君は君らしく、いればいいんだよ。</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>真戸原 直人(著)</p>
+                    <p>出版社：内外出版社</p>
+<p>カテゴリー：自己啓発,本ストア</p>
+                    <a href="https://www.amazon.co.jp/dp/4862575374?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
