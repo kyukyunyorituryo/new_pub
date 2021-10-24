@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="新刊チェック" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_pub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_pub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="新刊チェッカー">
+<meta name="twitter:description" content="新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_pub/twitter.jpg">
+<link rel="shortcut icon" href="../favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="../favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>新刊チェック</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_epub/">kindle新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_pub/">紙の新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/kindle_sale/">kindleセール</a>
+                  </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">絞り込み検索</h2>
+        <p>著者名、タイトル、カテゴリなどから絞り込みができます。</p>
+                <div class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" id="searchtext" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0"  id="search">検索</button>
+                </div>
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <p><a class="nav-link" href="../list.html">発売日一覧</a></p>
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+
+        <h2 class="alert alert-success">種類の選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='abook' type="button" class="btn btn-outline-secondary">単行本</button>
+<button id='softcover' type="button" class="btn btn-outline-success">ソフトカバー</button>
+<button id='largebook' type="button" class="btn btn-outline-danger">大型本</button>
+<button id='pocketedition' type="button" class="btn btn-outline-warning">文庫</button>
+<button id='paperback' type="button" class="btn btn-outline-info">ペーパーバック</button>
+<button id='mook'  type="button" class="btn btn-outline-dark">ムック</button>
+<button id='newbook' type="button" class="btn btn-outline-primary">新書</button>
+<!-- 後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">20211103の新刊</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51+TASNLjKL._SL500_.jpg" class="mr-3 lazyload" alt="ミラーニューロンの彼方へ! 支配からの解放" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ミラーニューロンの彼方へ! 支配からの解放</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>大嶋信頼(著)</p>
+                    <p>出版社：青山ライフ出版、ASIN：443429301X</p>
+<p>カテゴリー：臨床心理学・精神分析</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/443429301X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="走る女の子の描き方" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>走る女の子の描き方</h5>
+                    <p>価格：2420円、ポイント：24</p>
+                    <p>ポストメディア編集部(編集)</p>
+                    <p>出版社：一迅社、ASIN：4758017352</p>
+<p>カテゴリー：絵画</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4758017352?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51NY94j9yHL._SL500_.jpg" class="mr-3 lazyload" alt="偉人たちのポジティブ名言で学ぶ英語表現 ヘミングウェイ、アドラー、エジソン……読んで、学んで、元気になれる" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>偉人たちのポジティブ名言で学ぶ英語表現 ヘミングウェイ、アドラー、エジソン……読んで、学んで、元気になれる</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p>小池 直己(著)</p>
+                    <p>出版社：世界文化社、ASIN：4418215018</p>
+<p>カテゴリー：学習法</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4418215018?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41nlFwBsp5L._SL500_.jpg" class="mr-3 lazyload" alt="整形外科ビジュアルリハビリテーション" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>整形外科ビジュアルリハビリテーション</h5>
+                    <p>価格：5280円、ポイント：53</p>
+                    <p>稲川利光(編集)</p>
+                    <p>出版社：学研メディカル秀潤社、ASIN：4780912520</p>
+<p>カテゴリー：整形外科学</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4780912520?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51gy95PUuRL._SL500_.jpg" class="mr-3 lazyload" alt="どん底に落ちた養分たち――パチンコ依存者はいかに破滅していくか" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>どん底に落ちた養分たち――パチンコ依存者はいかに破滅していくか</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p>鈴木 傾城(著)</p>
+                    <p>出版社：集広舎、ASIN：4867350176</p>
+<p>カテゴリー：社会病理</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4867350176?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Dw92v2x5L._SL500_.jpg" class="mr-3 lazyload" alt="この働き方大丈夫?" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>この働き方大丈夫?</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p>中国新聞取材班(著)</p>
+                    <p>出版社：集広舎、ASIN：4867350192</p>
+<p>カテゴリー：労働問題</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4867350192?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51YSQs8wlzL._SL500_.jpg" class="mr-3 lazyload" alt="明日のための現代史 〈上巻〉1914~1948 「歴史総合」の視点で学ぶ世界大戦" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>明日のための現代史 〈上巻〉1914~1948 「歴史総合」の視点で学ぶ世界大戦</h5>
+                    <p>価格：2970円、ポイント：30</p>
+                    <p>伊勢 弘志(著)</p>
+                    <p>出版社：芙蓉書房出版、ASIN：4829508205</p>
+<p>カテゴリー：日中・太平洋戦争</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4829508205?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41sS1swHKXL._SL500_.jpg" class="mr-3 lazyload" alt="絵になる 東京の建築" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>絵になる 東京の建築</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>山田雅夫(著)</p>
+                    <p>出版社：ハモニカブックス、ASIN：4907349211</p>
+<p>カテゴリー：建物探訪</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4907349211?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31GAyDfunIL._SL500_.jpg" class="mr-3 lazyload" alt="福祉社会学のフロンティア:福祉国家・社会政策・ケアをめぐる想像力" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>福祉社会学のフロンティア:福祉国家・社会政策・ケアをめぐる想像力</h5>
+                    <p>価格：7150円、ポイント：72</p>
+                    <p>上村泰裕(編集)</p>
+                    <p>出版社：ミネルヴァ書房、ASIN：4623092828</p>
+<p>カテゴリー：社会学概論</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4623092828?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41Bbo9zznlL._SL500_.jpg" class="mr-3 lazyload" alt="格差の社会学入門 第2版 学歴と階層から考える" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>格差の社会学入門 第2版 学歴と階層から考える</h5>
+                    <p>価格：3267円、ポイント：33</p>
+                    <p>平沢 和司(著)</p>
+                    <p>出版社：北海道大学出版会、ASIN：4832968815</p>
+<p>カテゴリー：社会学概論</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4832968815?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/319MaLbTQ0L._SL500_.jpg" class="mr-3 lazyload" alt="教職論 (ミネルヴァ教職専門シリーズ3)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>教職論 (ミネルヴァ教職専門シリーズ3)</h5>
+                    <p>価格：2640円、ポイント：26</p>
+                    <p>広岡義之(監修)</p>
+                    <p>出版社：ミネルヴァ書房、ASIN：4623089568</p>
+<p>カテゴリー：教育学</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4623089568?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31H141m8dQL._SL500_.jpg" class="mr-3 lazyload" alt="利他の構造 (稲盛アカデミー叢書 2)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>利他の構造 (稲盛アカデミー叢書 2)</h5>
+                    <p>価格：6600円、ポイント：66</p>
+                    <p>日置弘一郎(著)</p>
+                    <p>出版社：ミネルヴァ書房、ASIN：4623092291</p>
+<p>カテゴリー：オペレーションズ,経営学</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4623092291?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41dixgcm70L._SL500_.jpg" class="mr-3 lazyload" alt="子どもの心の世界がみえる 太田ステージを通した発達支援の展開" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>子どもの心の世界がみえる 太田ステージを通した発達支援の展開</h5>
+                    <p>価格：2530円、ポイント：25</p>
+                    <p>立松 英子(著)</p>
+                    <p>出版社：学苑社、ASIN：4761408286</p>
+<p>カテゴリー：障害児教育</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4761408286?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
