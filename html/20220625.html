@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="新刊チェック" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_pub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_pub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="新刊チェッカー">
+<meta name="twitter:description" content="新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_pub/twitter.jpg">
+<link rel="shortcut icon" href="../favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="../favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>新刊チェック</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_epub/">kindle新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_pub/">紙の新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/kindle_sale/">kindleセール</a>
+                  </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">絞り込み検索</h2>
+        <p>著者名、タイトル、カテゴリなどから絞り込みができます。</p>
+                <div class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" id="searchtext" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0"  id="search">検索</button>
+                </div>
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <p><a class="nav-link" href="../list.html">発売日一覧</a></p>
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+
+        <h2 class="alert alert-success">種類の選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='abook' type="button" class="btn btn-outline-secondary">単行本</button>
+<button id='softcover' type="button" class="btn btn-outline-success">ソフトカバー</button>
+<button id='largebook' type="button" class="btn btn-outline-danger">大型本</button>
+<button id='pocketedition' type="button" class="btn btn-outline-warning">文庫</button>
+<button id='paperback' type="button" class="btn btn-outline-info">ペーパーバック</button>
+<button id='mook'  type="button" class="btn btn-outline-dark">ムック</button>
+<button id='newbook' type="button" class="btn btn-outline-primary">新書</button>
+<!-- 後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">20220625の新刊</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ロングセラーズ2022年6月 新刊1 (仮題)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ロングセラーズ2022年6月 新刊1 (仮題)</h5>
+                    <p>価格：1220円、ポイント：12</p>
+                    <p></p>
+                    <p>出版社：ロングセラーズ、ASIN：4845451638</p>
+<p>カテゴリー：ジャンル別,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4845451638?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ロングセラーズ2022年6月 新刊3(仮題)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ロングセラーズ2022年6月 新刊3(仮題)</h5>
+                    <p>価格：1550円、ポイント：16</p>
+                    <p></p>
+                    <p>出版社：ロングセラーズ、ASIN：4845424916</p>
+<p>カテゴリー：ジャンル別</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4845424916?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ロングセラーズ2022年6月 新刊2 (仮題)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ロングセラーズ2022年6月 新刊2 (仮題)</h5>
+                    <p>価格：1220円、ポイント：12</p>
+                    <p></p>
+                    <p>出版社：ロングセラーズ、ASIN：4845451646</p>
+<p>カテゴリー：ジャンル別,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4845451646?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/61AIIBmSeGL._SL500_.jpg" class="mr-3 lazyload" alt="はじめてのずかん さかな (講談社の動く図鑑MOVE)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>はじめてのずかん さかな (講談社の動く図鑑MOVE)</h5>
+                    <p>価格：1760円、ポイント：53</p>
+                    <p>瀧 靖之(監修)</p>
+                    <p>出版社：講談社、ASIN：406526717X</p>
+<p>カテゴリー：ジャンル別</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/406526717X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="機動戦士Zガンダム Define シャア・アズナブル 赤の分水嶺 19 (角川コミックス・エース)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>機動戦士Zガンダム Define シャア・アズナブル 赤の分水嶺 19 (角川コミックス・エース)</h5>
+                    <p>価格：なし円、ポイント：53</p>
+                    <p>北爪 宏幸(著)</p>
+                    <p>出版社：KADOKAWA、ASIN：4041123755</p>
+<p>カテゴリー：コミック</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4041123755?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ずっと、そばにいるから(仮)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ずっと、そばにいるから(仮)</h5>
+                    <p>価格：1430円、ポイント：14</p>
+                    <p>tomoyo(著)</p>
+                    <p>出版社：すばる舎、ASIN：4799110098</p>
+<p>カテゴリー：絵本・児童書</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4799110098?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="2022-2023 特別会員 証券外務員 学習テキスト(一種・二種対応) (2022-2023 証券外務員資格対策シリーズ)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>2022-2023 特別会員 証券外務員 学習テキスト(一種・二種対応) (2022-2023 証券外務員資格対策シリーズ)</h5>
+                    <p>価格：1760円、ポイント：18</p>
+                    <p>日本投資環境研究所(著)</p>
+                    <p>出版社：ビジネス教育出版社、ASIN：4828309551</p>
+<p>カテゴリー：証券外務員</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4828309551?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41gau5DbOkL._SL500_.jpg" class="mr-3 lazyload" alt="リヒャルト・シュトラウス/楽劇 サロメ (オペラ対訳×分析ハンドブック)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>リヒャルト・シュトラウス/楽劇 サロメ (オペラ対訳×分析ハンドブック)</h5>
+                    <p>価格：なし円、ポイント：18</p>
+                    <p>広瀬大介(著)</p>
+                    <p>出版社：アルテスパブリッシング、ASIN：4865592601</p>
+<p>カテゴリー：音楽一般,ワールド,クラシック,ワールド,その他</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4865592601?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="対立・葛藤類語辞典 上巻" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>対立・葛藤類語辞典 上巻</h5>
+                    <p>価格：2200円、ポイント：22</p>
+                    <p>アンジェラ・アッカーマン(著)</p>
+                    <p>出版社：フィルムアート社、ASIN：4845921189</p>
+<p>カテゴリー：文学理論</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4845921189?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41q-ktZMPeL._SL500_.jpg" class="mr-3 lazyload" alt="戦争社会学研究6 ミリタリー・カルチャー研究の可能性 (第6巻)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>戦争社会学研究6 ミリタリー・カルチャー研究の可能性 (第6巻)</h5>
+                    <p>価格：3520円、ポイント：35</p>
+                    <p>戦争社会学研究研究会(編集)</p>
+                    <p>出版社：みずき書林、ASIN：4909710248</p>
+<p>カテゴリー：ジャンル別</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4909710248?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/418gZGlFHaL._SL500_.jpg" class="mr-3 lazyload" alt="B Corpハンドブック よいビジネスの計測・実践・改善: よいビジネスの計測・実践・改善" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>B Corpハンドブック よいビジネスの計測・実践・改善: よいビジネスの計測・実践・改善</h5>
+                    <p>価格：2970円、ポイント：30</p>
+                    <p>ライアン・ハニーマン(著)</p>
+                    <p>出版社：バリューブックス・パブリッシング、ASIN：4910865004</p>
+<p>カテゴリー：ジャンル別</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4910865004?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="くらべてわかる日本語表現文型辞典 初中級編" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>くらべてわかる日本語表現文型辞典 初中級編</h5>
+                    <p>価格：1760円、ポイント：18</p>
+                    <p>大阪YWCA(著)</p>
+                    <p>出版社：Jリサーチ出版、ASIN：486392562X</p>
+<p>カテゴリー：日本語教育,外国人向け日本語学習</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/486392562X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51n+cYMECEL._SL500_.jpg" class="mr-3 lazyload" alt="ハックしないで監査役!! 小説こうしす!EEシリーズ 元社内SE祝園アカネ 監査役編 [1] (1) (京姫鉄道NOVELS)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ハックしないで監査役!! 小説こうしす!EEシリーズ 元社内SE祝園アカネ 監査役編 [1] (1) (京姫鉄道NOVELS)</h5>
+                    <p>価格：2112円、ポイント：21</p>
+                    <p>井二 かける(著)</p>
+                    <p>出版社：京姫鉄道出版、ASIN：491039110X</p>
+<p>カテゴリー：ジャンル別</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/491039110X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/513P9aSNuxL._SL500_.jpg" class="mr-3 lazyload" alt="「記録の神様」山内以九士と野球の青春" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>「記録の神様」山内以九士と野球の青春</h5>
+                    <p>価格：2200円、ポイント：22</p>
+                    <p>室 靖治(著)</p>
+                    <p>出版社：道和書院、ASIN：4810521427</p>
+<p>カテゴリー：スポーツ</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4810521427?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="灰と幻想のグリムガル level.19 この世のすべてを抱きしめて痛い (オーバーラップ文庫)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>灰と幻想のグリムガル level.19 この世のすべてを抱きしめて痛い (オーバーラップ文庫)</h5>
+                    <p>価格：715円、ポイント：21</p>
+                    <p>十文字 青(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824001870</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824001870?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="幾億もの剣戟が黎明を告げる 2 ひねくれ銃手と車椅子の魔弾 (オーバーラップ文庫)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>幾億もの剣戟が黎明を告げる 2 ひねくれ銃手と車椅子の魔弾 (オーバーラップ文庫)</h5>
+                    <p>価格：715円、ポイント：7</p>
+                    <p>御鷹穂積(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002095</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002095?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="とんでもスキルで異世界放浪メシ 12 鶏のから揚げ×大いなる古竜 (オーバーラップノベルス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>とんでもスキルで異世界放浪メシ 12 鶏のから揚げ×大いなる古竜 (オーバーラップノベルス)</h5>
+                    <p>価格：1320円、ポイント：13</p>
+                    <p>江口 連(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002141</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002141?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="断罪された悪役令嬢は続編の悪役令嬢に生まれ変わる 1 (ガルドコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>断罪された悪役令嬢は続編の悪役令嬢に生まれ変わる 1 (ガルドコミックス)</h5>
+                    <p>価格：682円、ポイント：7</p>
+                    <p>白砂(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002230</p>
+<p>カテゴリー：コミック</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002230?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ありふれた職業で世界最強 零 8 (ガルドコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ありふれた職業で世界最強 零 8 (ガルドコミックス)</h5>
+                    <p>価格：748円、ポイント：7</p>
+                    <p>神地あたる(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002001</p>
+<p>カテゴリー：コミック</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002001?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ブラックな騎士団の奴隷がホワイトな冒険者ギルドに引き抜かれてSランクになりました 7 (オーバーラップ文庫)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ブラックな騎士団の奴隷がホワイトな冒険者ギルドに引き抜かれてSランクになりました 7 (オーバーラップ文庫)</h5>
+                    <p>価格：649円、ポイント：6</p>
+                    <p>寺王(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002109</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002109?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ループ7回目の悪役令嬢は、元敵国で自由気ままな花嫁生活を満喫する 5 (オーバーラップノベルスf)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ループ7回目の悪役令嬢は、元敵国で自由気ままな花嫁生活を満喫する 5 (オーバーラップノベルスf)</h5>
+                    <p>価格：1320円、ポイント：13</p>
+                    <p>雨川透子(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002184</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002184?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="フシノカミ 7 ~辺境から始める文明再生記~ (オーバーラップノベルス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>フシノカミ 7 ~辺境から始める文明再生記~ (オーバーラップノベルス)</h5>
+                    <p>価格：1320円、ポイント：13</p>
+                    <p>雨川水海(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002133</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002133?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="虐げられた追放王女は、転生した伝説の魔女でした 1 ~迎えに来られても困ります。従僕とのお昼寝を邪魔しないでください~ (オーバーラップノベルスf)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>虐げられた追放王女は、転生した伝説の魔女でした 1 ~迎えに来られても困ります。従僕とのお昼寝を邪魔しないでください~ (オーバーラップノベルスf)</h5>
+                    <p>価格：1320円、ポイント：13</p>
+                    <p>雨川透子(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：482400215X</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/482400215X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="絶対に働きたくないダンジョンマスターが惰眠をむさぼるまで 7 (ガルドコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>絶対に働きたくないダンジョンマスターが惰眠をむさぼるまで 7 (ガルドコミックス)</h5>
+                    <p>価格：682円、ポイント：7</p>
+                    <p>七六(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002214</p>
+<p>カテゴリー：コミック</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002214?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="絶対に働きたくないダンジョンマスターが惰眠をむさぼるまで 17 (オーバーラップ文庫)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>絶対に働きたくないダンジョンマスターが惰眠をむさぼるまで 17 (オーバーラップ文庫)</h5>
+                    <p>価格：869円、ポイント：9</p>
+                    <p>鬼影スパナ(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002125</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002125?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="後宮の雑用姫 ~山育ちの知恵を駆使して宮廷をリフォームしたり、邪悪なものを狩ったりしていたら、何故か皇帝達から一目置かれるようになりました~ 2 (オーバーラップノベルスf)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>後宮の雑用姫 ~山育ちの知恵を駆使して宮廷をリフォームしたり、邪悪なものを狩ったりしていたら、何故か皇帝達から一目置かれるようになりました~ 2 (オーバーラップノベルスf)</h5>
+                    <p>価格：1320円、ポイント：13</p>
+                    <p>KK(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002168</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002168?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="黒の召喚士 17 学園戦線 (オーバーラップ文庫)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>黒の召喚士 17 学園戦線 (オーバーラップ文庫)</h5>
+                    <p>価格：715円、ポイント：7</p>
+                    <p>迷井豆腐(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002117</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002117?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ハズレ枠の【状態異常スキル】で最強になった俺がすべてを蹂躙するまで 9 (オーバーラップ文庫)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ハズレ枠の【状態異常スキル】で最強になった俺がすべてを蹂躙するまで 9 (オーバーラップ文庫)</h5>
+                    <p>価格：825円、ポイント：25</p>
+                    <p>篠崎 芳(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824001862</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824001862?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="暗殺者は黄昏に笑う 2 (オーバーラップ文庫)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>暗殺者は黄昏に笑う 2 (オーバーラップ文庫)</h5>
+                    <p>価格：759円、ポイント：8</p>
+                    <p>メグリくくる(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002087</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002087?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="拝啓「氷の騎士とはずれ姫」だったわたしたちへ 4 (ガルドコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>拝啓「氷の騎士とはずれ姫」だったわたしたちへ 4 (ガルドコミックス)</h5>
+                    <p>価格：682円、ポイント：7</p>
+                    <p>由姫ゆきこ(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002257</p>
+<p>カテゴリー：コミック</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002257?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="サラリーマンが異世界に行ったら四天王になった話 5 (ガルドコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>サラリーマンが異世界に行ったら四天王になった話 5 (ガルドコミックス)</h5>
+                    <p>価格：682円、ポイント：7</p>
+                    <p>村光(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002206</p>
+<p>カテゴリー：コミック</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002206?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="黒の召喚士 13 (ガルドコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>黒の召喚士 13 (ガルドコミックス)</h5>
+                    <p>価格：682円、ポイント：7</p>
+                    <p>天羽 銀(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002222</p>
+<p>カテゴリー：コミック</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002222?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="冷酷非情な旦那様! ?2 (オーバーラップノベルスf)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>冷酷非情な旦那様! ?2 (オーバーラップノベルスf)</h5>
+                    <p>価格：1320円、ポイント：13</p>
+                    <p>和島 逆(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002176</p>
+<p>カテゴリー：ライトノベル,Featured Categories</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002176?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="フシノカミ 3 ~辺境から始める文明再生記~ (ガルドコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>フシノカミ 3 ~辺境から始める文明再生記~ (ガルドコミックス)</h5>
+                    <p>価格：704円、ポイント：7</p>
+                    <p>黒杞よるの(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002192</p>
+<p>カテゴリー：コミック</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002192?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ループ7回目の悪役令嬢は、元敵国で自由気ままな花嫁生活を満喫する 3 (ガルドコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ループ7回目の悪役令嬢は、元敵国で自由気ままな花嫁生活を満喫する 3 (ガルドコミックス)</h5>
+                    <p>価格：715円、ポイント：7</p>
+                    <p>木乃ひのき(著)</p>
+                    <p>出版社：オーバーラップ、ASIN：4824002249</p>
+<p>カテゴリー：コミック</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4824002249?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51p5a9aokQL._SL500_.jpg" class="mr-3 lazyload" alt="完成データ付:CGキャラクター制作の秘訣" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>完成データ付:CGキャラクター制作の秘訣</h5>
+                    <p>価格：3520円、ポイント：35</p>
+                    <p>江原 徹(著)</p>
+                    <p>出版社：ボーンデジタル、ASIN：4862465323</p>
+<p>カテゴリー：3D グラフィックス</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4862465323?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51tSghqZgDL._SL500_.jpg" class="mr-3 lazyload" alt="銀行員だった大家が教える! 不動産投資 融資攻略バイブル" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>銀行員だった大家が教える! 不動産投資 融資攻略バイブル</h5>
+                    <p>価格：2200円、ポイント：22</p>
+                    <p>半沢大家(著)</p>
+                    <p>出版社：standards、ASIN：4866365730</p>
+<p>カテゴリー：不動産投資</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4866365730?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41IEh856MJL._SL500_.jpg" class="mr-3 lazyload" alt="SPECIAL FAN BOOK 横道侑里" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>SPECIAL FAN BOOK 横道侑里</h5>
+                    <p>価格：2640円、ポイント：26</p>
+                    <p>横道侑里(著)</p>
+                    <p>出版社：トランスワールドジャパン、ASIN：4862563481</p>
+<p>カテゴリー：ジャンル別</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4862563481?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41tvg9RQ2LL._SL500_.jpg" class="mr-3 lazyload" alt="SPECIAL FAN BOOK 月野もも" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>SPECIAL FAN BOOK 月野もも</h5>
+                    <p>価格：2640円、ポイント：26</p>
+                    <p>月野もも(著)</p>
+                    <p>出版社：トランスワールドジャパン、ASIN：4862563503</p>
+<p>カテゴリー：ジャンル別</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4862563503?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="50代からの「確実な」お金の貯め方、増やし方教えてください" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>50代からの「確実な」お金の貯め方、増やし方教えてください</h5>
+                    <p>価格：1540円、ポイント：15</p>
+                    <p>浅田里花(著)</p>
+                    <p>出版社：主婦の友社、ASIN：4074518724</p>
+<p>カテゴリー：年金・保険</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4074518724?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="天音まひな1st.写真集「あま恋」【豪華愛蔵版3000部限定】" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>天音まひな1st.写真集「あま恋」【豪華愛蔵版3000部限定】</h5>
+                    <p>価格：4290円、ポイント：43</p>
+                    <p>斉木弘吉(写真)</p>
+                    <p>出版社：彩文館出版、ASIN：4775606522</p>
+<p>カテゴリー：写真集</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4775606522?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51uHZSax+-L._SL500_.jpg" class="mr-3 lazyload" alt="秒速で体が柔らかくなる 5秒筋膜ゆらし (冬樹舎)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>秒速で体が柔らかくなる 5秒筋膜ゆらし (冬樹舎)</h5>
+                    <p>価格：1595円、ポイント：16</p>
+                    <p>成田崇矢(著)</p>
+                    <p>出版社：サンクチュアリ出版、ASIN：4801493130</p>
+<p>カテゴリー：ビジネス・経済</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4801493130?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/61Gi68ga7HL._SL500_.jpg" class="mr-3 lazyload" alt="ロバートの元ストーカーがテレビ局員になる。 ~メモ少年~" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ロバートの元ストーカーがテレビ局員になる。 ~メモ少年~</h5>
+                    <p>価格：1760円、ポイント：53</p>
+                    <p>篠田 直哉(著)</p>
+                    <p>出版社：東京ニュース通信社、ASIN：4065283701</p>
+<p>カテゴリー：近現代の作品,社会一般,コミュニティ,その他,その他のエンターテイメント,芸能人評伝,日本人画家,一般</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/4065283701?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
