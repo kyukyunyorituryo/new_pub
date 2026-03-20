@@ -18,43 +18,41 @@ const Search = ({ book, catetag, pubtag }) => {
   //出版社一覧
   const publishers = pubtag || ``;
 
-  var filteredList = book.filter((post) => {
-    //console.log(inputValue)
-    //console.log(post)
-    //アダルトa、カテゴリーc、出版社p、語句検索w、
-    //return a && c && p && w
-    //アダルト除去
-    var a=true ; var c=true; var p=true; var w=true;
-    if (!adult) {
-      const cate = post.Category.split(',')
-      a= [...cate].filter(item => !cate.includes('アダルト') && !cate.includes('HOTW_Test_アダルト')).length > 0
-    }
-    if (selCate === "all" && selPub === "all") {
-      return book
-    }
-    // カテゴリー絞り込み
-    if (selCate !== "") {
-      //console.log(post.Category)
-      const cate = post.Category.split(',')
-      c= [...cate, ...selCate].filter(item => cate.includes(item) && selCate.includes(item)).length > 0
-      //return book.Category === category
-    }
-    //出版社絞り込み
-    if (selPub !== "") {
-      //console.log(post.Category)
-      const pub = post.Publisher.split(',')
-      p= [...pub, ...selPub].filter(item => pub.includes(item) && selPub.includes(item)).length > 0
-      //return book.Category === category
-    }
-    // フリーキーワードでの絞り込み
-    if (inputValue !== "") {
+const filteredList = book.filter(post => {
+  let a = true, c = true, p = true, w = true;
 
-      w= Object.values(post).filter(item =>
-        item !== undefined && item !== null && item.toString().toUpperCase().indexOf(inputValue.toString().toUpperCase()) !== -1).length > 0
-    }
-    return a && c && p && w
+  // アダルト除外
+  if (!adult) {
+    a = !post.Category.includes('アダルト') &&
+        !post.Category.includes('HOTW_Test_アダルト');
+  }
 
-  });
+  // カテゴリー
+  if (selCate !== "") {
+    const cate = post.Category.split(',');
+    c = cate.includes(selCate);
+  }
+
+  // 出版社
+  if (selPub !== "") {
+    const pub = post.Publisher.split(',');
+    p = pub.includes(selPub);
+  }
+
+  // フリーキーワード
+  if (inputValue !== "") {
+    w = Object.values(post).some(
+      item =>
+        item &&
+        item.toString().toUpperCase().includes(
+          inputValue.toUpperCase()
+        )
+    );
+  }
+
+  return a && c && p && w;
+});
+
   const selectCategory = (category) => {
     setSelCate(category)
   }
@@ -96,7 +94,7 @@ const Search = ({ book, catetag, pubtag }) => {
         <input type="text" value={inputValue} onChange={handleInputChange} />
       </div>
 
-      <Paginate itemsPerPage={10} items={filteredList} />
+      <Paginate itemsPerPage={20} items={filteredList} />
     </>
   );
 }

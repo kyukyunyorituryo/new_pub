@@ -13,7 +13,7 @@ const Index = ({
   location,
 }) => {
 // クエリ文字列を取得
-console.log(location.search)
+//console.log(location.search)
 var getQueryVars = function() {
 	// return用の配列
 	var vars = [];
@@ -48,34 +48,49 @@ var getQueryVars = function() {
   const [bookData, setBookData] = useState([])
   const [cateTag, setCateTag] = useState([])
   const [pubTag, setPubtag] = useState([])
-  useEffect(() => {
-    // get data from GitHub api
-    fetch(`https://kyukyunyorituryo.github.io/new_pub/json/${kyou}.json`)
-      .then(response => response.json()) // parse JSON from request
-      .then(resultData => {
-        var book = resultData
-        const publist = book.map((num) => {
-          return num.Publisher;
-        });
+useEffect(() => {
+  setLoading(true);
 
-        const pubtag = [...new Set(publist)];
-        const catelist = book.map((num) => {
-          return num.Category.split(",");
-        }).flat();
-        var catetag = [...new Set(catelist)];
+  fetch(`https://kyukyunyorituryo.github.io/new_pub/json/${kyou}.json`)
+    .then(res => {
+      if (!res.ok) return [];     // 404などは空配列扱い
+      return res.json();
+    })
+    .then(resultData => {
+      const book = Array.isArray(resultData) ? resultData : [];
 
-        catetag = catetag.filter(x => catesafe.includes(x))
-        setBookData(resultData)
-        setCateTag(catetag)
-        setPubtag(pubtag)
+      document.title = "「新刊チェック」" + daytitle;
+
+      if (book.length === 0) {
+        // 空データでも state を初期化して表示
+        setBookData([]);
+        setCateTag([]);
+        setPubtag([]);
         setLoading(false);
-        console.log(resultData)
-        console.log("データ取得")
-      })
-       .catch(error => {
-    console.error('通信に失敗しました', error);
-  }); // set data for the number of stars
-  }, [id])
+        return;
+      }
+
+      const pubtag = [...new Set(book.map(b => b.Publisher))];
+
+      const catetag = [...new Set(
+        book.flatMap(b => b.Category.split(","))
+      )].filter(x => catesafe.includes(x));
+
+      setBookData(book);
+      setCateTag(catetag);
+      setPubtag(pubtag);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error("通信に失敗しました", err);
+      // ❗ 失敗時もページは表示
+      setBookData([]);
+      setCateTag([]);
+      setPubtag([]);
+      setLoading(false);
+    });
+}, [id]);
+
   var freetitle = `${daytitle}の新刊一覧`
   //catetag.length=10
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -101,11 +116,15 @@ var getQueryVars = function() {
         onClickDay={(e) => navigate(`?day=${(parseInt(new Date(e).toLocaleDateString('sv-SE').replaceAll('-', ''), 10))}`)
         }
       />
-          <Search book={bookData} catetag={cateTag} pubtag={pubTag}/>
+<Search book={bookData} catetag={cateTag} pubtag={pubTag} />
+
+{bookData.length === 0 && (
+  <p>この日の新刊情報はありません。</p>
+)}
           <hr />
           <Share
             title={freetitle}
-            url={``}
+            url={`${data.site.siteMetadata.siteUrl}${location.search}`}
           />
           <footer>
             <Bio />
